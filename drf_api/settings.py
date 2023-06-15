@@ -61,7 +61,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = ['8000-frnbdn-momentsdrf-ye8v6oi2jkg.ws-us99.gitpod.io',
-                 'localhost', 'moments-drfapi.herokuapp.com']
+                 'localhost', 'moments-drfapi-95671cbfddab.herokuapp.com']
 
 
 # Application definition
