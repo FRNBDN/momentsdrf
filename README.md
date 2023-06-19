@@ -1,108 +1,83 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Moments - React
 
-Welcome FRNBDN,
+## Project description
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+Moments is a social media platform. It has been designed for its users to share their life's moments. The application consists of the React app and an API. This is the react section. The project is a walkthrough project in the Code Institute Fullstack Developer Program
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+## User stories
 
-## Gitpod Reminders
+| Category  | as      | I want to                      | so that I can                                                                                    | UI components                                |
+| --------- | ------- | ------------------------------ | ------------------------------------------------------------------------------------------------ | -------------------------------------------- |
+| auth      | user    | register for an account        | have a personal profile with a picture                                                           | SignUpForm<br>ProfilePage<br>ProfileEditForm |
+| auth      | user    | register for an account        | create, like and comment on posts                                                                | Post<br>PostPage<br>Comment                  |
+| auth      | user    | register for an account        | follow users                                                                                     | Profile<br>ProfilePage                       |
+| posts     | visitor | view a list of posts           | browse the most recent uploads                                                                   | PostsPage                                    |
+| posts     | visitor | view an individual post        | see user feedback, i.e. likes and read comments                                                  | Post<br>PostPaget                            |
+| posts     | visitor | search a list of posts         | find a post by a specific artist or a title                                                      | PostsPage                                    |
+| posts     | visitor | scroll through a list of posts | browse the site more comfortably                                                                 | InfiniteScrollComponent                      |
+| posts     | user    | edit and delete my post        | correct or hide any mistakes                                                                     | PostEditForm<br>MoreDropdownMenu             |
+| posts     | user    | create a post                  | share my moments with others                                                                     | PostCreateForm                               |
+| posts     | user    | view liked posts               | go back often to my favourite posts                                                              | PostsPage                                    |
+| posts     | user    | view followed users' posts     | keep up with my favourite users' moments                                                         | PostsPage                                    |
+| likes     | user    | like a post                    | express my interest in someone's shared moment                                                   | Post like icon                               |
+| likes     | user    | unlike a post                  | express that my interest in someone's shared moment has faded away                               | Post (un) like icon                          |
+| comments  | user    | create a comment               | share my thoughts on other people's content                                                      | PostPage<br>CommentCreateForm                |
+| comments  | user    | edit and delete my comment     | correct or hide any mistakes                                                                     | PostPage<br>Comment<br>MoreDropdownMenu      |
+| profiles  | user    | view a profile                 | see a user's recent posts + post, followers, following count data                                | ProfilePage<br>Post                          |
+| profiles  | user    | edit a profile                 | update my profile information                                                                    | ProfileEditForm                              |
+| followers | user    | follow a profile               | express my interest in someone's content                                                         | Profile follow button                        |
+| followers | user    | unfollow a profile             | express that my interest in someone's content has faded away and remove their posts from my feed | Profile (un) follow button                   |
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## Detailed page and component breakdown:
 
-`python3 -m http.server`
+![lucidchart](https://res.cloudinary.com/dgjrrvdbl/image/upload/v1649155000/moments-component-map_rfth6q.png)
 
-A blue button should appear to click: _Make Public_,
+## Most reused components:
 
-Another blue button should appear to click: _Open Browser_.
+- PostsPage:
+  - Home, Feed, Liked
+- Post:
+  - PostsPage
+- Profile:
+  - PopularProfiles, PopularProfiles (mobile)
+- DropdownMenus:
+  - Post, ProfilePage, Comment
+- InfiniteScrollComponent:
+  - PostPage (loading Comment components)
+  - PostsPage (loading all, feed or liked Post components)
+  - ProfilePage (loading Post components that belong to the profile)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+## Deployment steps
 
-A blue button should appear to click: _Make Public_,
+- add prebuild script
+- add Procfile
+- remove all console.logs
+- use Bootstrap default imports to minimize the build
+- deploy to Heroku
 
-Another blue button should appear to click: _Open Browser_.
+## Tests:
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### Automated:
 
-To log into the Heroku toolbelt CLI:
+- used the msw library to mock user and logout endpoints
+- tested the NavBar component:
+  - renders without a problem
+  - renders the link to a user profile for a logged in user
+  - renders the sign in and sign up buttons again on logout
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+### Manual:
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+- every other feature tested extensively
 
-------
+## Libraries, contexts and hooks:
 
-## Release History
-
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
-
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
-
-**July 2 2021:** Remove extensions that are not available in Open VSX.
-
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
-
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+- react-infinite-scroll-component
+  - introduced to replace traditional pagination with lazy loading instead of pagination to make the application more performant and seem more snappy/ engaging
+- react-bootstrap:
+  - introduced
+- contexts:
+  - CurrentUserContext exposes the user state to the entire app. Relevant components can subscribe to its changes
+  - ProfileDataContext exposes the profile state to the entire app. Enables the PopularProfiles component to be in sync with the ProfilePage contents
+- custom hooks written to reduce repeatable state logic:
+  - useClickOutsideToggle: enable toggle on the burger menu
+  - useRedirect: enable redirect for users who are either logged in or logged out, depending on the use case
